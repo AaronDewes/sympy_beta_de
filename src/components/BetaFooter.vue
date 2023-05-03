@@ -19,7 +19,7 @@ onMounted(async () => {
 <template>
   <div id="footer">
     <p>
-      Pyodide version
+      Pyodide-Version
       <template v-if="pyodideVersion">
         {{ pyodideVersion }}
       </template>
@@ -28,7 +28,7 @@ onMounted(async () => {
         size="small"
       />
       ·
-      SymPy version
+      SymPy-Version
       <template v-if="sympyVersion">
         {{ sympyVersion }}
       </template>
@@ -42,11 +42,12 @@ onMounted(async () => {
         target="_blank"
       >
         {{ commit.slice(0, 7) }}
-      </n-a> · Built at {{ buildDate }}
+      </n-a> · Letzte Aktualisierung am {{ buildDate }}
     </p>
     <p>
       &copy; 2013-2020 SymPy Development Team
       <br>&copy; 2021-2023 Qijia Liu
+      <br>&copy; 2023 Aaron Dewes
     </p>
     <p>
       This project is Free and Open Source (AGPLv3+):
@@ -54,7 +55,7 @@ onMounted(async () => {
         :href="homepage"
         target="_blank"
       >
-        SymPy Beta on GitHub
+        Waldrechnr on GitHub
       </n-a>.
     </p>
   </div>

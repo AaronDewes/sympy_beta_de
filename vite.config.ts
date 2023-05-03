@@ -21,8 +21,8 @@ const plugins = [
     },
     includeAssets: ['*.whl', '*.zip', 'fonts/*.woff2'],
     manifest: {
-      name: 'SymPy Beta',
-      short_name: 'SymPy Beta',
+      name: 'Waldrechnr',
+      short_name: 'Waldrechnr',
       'icons': [
         {
           src: 'favicon.svg',

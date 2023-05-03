@@ -25,3 +25,11 @@ antlr4-python3-runtime-*
 *.js.map
 public/*Worker.js
 .vercel
+
+# Yarn 3
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

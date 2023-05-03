@@ -51,7 +51,7 @@ function mathliveInputCallback (value: string) {
           src="/favicon.svg"
           alt=""
         >
-        <n-a>SymPy Beta</n-a>
+        <n-a>Waldrechnr</n-a>
       </router-link>
     </n-h1>
     <n-space vertical>
