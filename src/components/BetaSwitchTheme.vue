@@ -56,7 +56,7 @@ watch(osThemeRef, () => followSystem.value && followOSTheme())
         </template>
       </n-switch>
       <n-checkbox v-model:checked="followSystem">
-        Follow System
+        Systemstandard
       </n-checkbox>
     </n-space>
   </component>

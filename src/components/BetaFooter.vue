@@ -8,7 +8,7 @@ const pyodideVersion = ref<string>()
 const sympyVersion = ref<string>()
 const commit = '__COMMIT__'
 const commitURL = `${homepage}/commit/${commit}`
-const buildDate = '__BUILD_DATE__'
+const buildDate = new Intl.DateTimeFormat(navigator.language).format(new Date('__BUILD_DATE__'));
 
 onMounted(async () => {
   pyodideVersion.value = await getPyodideVersion()
@@ -42,7 +42,7 @@ onMounted(async () => {
         target="_blank"
       >
         {{ commit.slice(0, 7) }}
-      </n-a> · Letzte Aktualisierung am {{ buildDate }}
+      </n-a>· Erstellt am {{ buildDate }}
     </p>
     <p>
       &copy; 2013-2020 SymPy Development Team
@@ -50,12 +50,12 @@ onMounted(async () => {
       <br>&copy; 2023 Aaron Dewes
     </p>
     <p>
-      This project is Free and Open Source (AGPLv3+):
+      Dieses Projekt ist freie Open-Source-Software unter der GNU Affero General Public License v3:
       <n-a
         :href="homepage"
         target="_blank"
       >
-        Waldrechnr on GitHub
+        Waldrechnr auf GitHub
       </n-a>.
     </p>
   </div>

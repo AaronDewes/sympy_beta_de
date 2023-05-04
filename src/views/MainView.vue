@@ -36,7 +36,7 @@ function randomExample () {
   font-weight: normal;
 "
     >
-      Examples
+      Beispiele
     </h2>
     <n-space vertical>
       <n-button
@@ -44,7 +44,7 @@ function randomExample () {
         type="primary"
         @click="randomExample"
       >
-        Random Example
+        Zufälliges Beispiel
       </n-button>
       <beta-collapse
         v-for="category in categories"
@@ -52,15 +52,14 @@ function randomExample () {
       />
     </n-space>
     <p>
-      … and more: see
-      the
+      … und mehr: Schau in
+      die
       <n-a
         href="https://docs.sympy.org"
         target="_blank"
       >
-        documentation
-      </n-a> to learn
-      about the full range of SymPy's capabilities.
+        Dokumentation
+      </n-a> um mehr über die Fähigkeiten von SymPy zu erfahren.
     </p>
   </div>
 </template>
