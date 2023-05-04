@@ -97,11 +97,11 @@ class IntegralPrinter(JSONPrinter):
 
     def print_Power(self, rule):
         with self.new_step():
-            self.append(self.format_text("The integral of "),
+            self.append(self.format_text("Das Integral von "),
                         self.format_math(rule.symbol ** sympy.Symbol('n')),
-                        self.format_text(" is "),
+                        self.format_text(" ist "),
                         self.format_math((rule.symbol ** (1 + sympy.Symbol('n'))) / (1 + sympy.Symbol('n'))),
-                        self.format_text(" when "),
+                        self.format_text(" wenn "),
                         self.format_math(sympy.Ne(sympy.Symbol('n'), -1)),
                         self.format_text(":"))
             self.append(self.format_math_display(sympy.Eq(sympy.Integral(rule.context, rule.symbol),
