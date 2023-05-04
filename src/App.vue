@@ -68,6 +68,7 @@ watchEffect(() => {
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400);
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans+Mono);
+@import url(https://fonts.googleapis.com/css?family=EB+Garamond);
 
 body {
   font-family: "Open Sans", sans-serif;

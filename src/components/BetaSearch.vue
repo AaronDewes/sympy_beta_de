@@ -51,7 +51,7 @@ function mathliveInputCallback (value: string) {
           src="/favicon.svg"
           alt=""
         >
-        <n-a>Waldrechnr</n-a>
+        <n-a style="font-family: 'EB Garamond', serif">waldrechnr.</n-a>
       </router-link>
     </n-h1>
     <n-space vertical>
