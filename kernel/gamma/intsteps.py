@@ -159,7 +159,7 @@ class IntegralPrinter(JSONPrinter):
             with self.new_level():
                 self.print_rule(rule.v_step)
 
-            self.append(self.format_text("Nun berechne das Unterintegral."))
+            self.append(self.format_text("Nun berechne das Teilintegral."))
             self.print_rule(rule.second_step)
 
     def print_CyclicParts(self, rule):
