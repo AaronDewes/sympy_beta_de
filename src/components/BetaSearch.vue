@@ -33,12 +33,13 @@ function mathliveInputCallback (value: string) {
     class="input"
   >
     <n-h1>
-      <router-link :to="'/'" style="margin-top: 2rem;">
+      <router-link :to="'/'">
         <img
           src="/favicon.svg"
           alt=""
+
         >
-        <n-badge value="Beta" type="info">
+        <n-badge value="Beta" type="info" :offset="[0, 6]">
           <n-a style="font-family: 'EB Garamond', serif">waldrechnr.</n-a>
         </n-badge>
       </router-link>
