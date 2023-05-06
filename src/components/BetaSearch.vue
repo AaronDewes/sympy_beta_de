@@ -9,11 +9,9 @@ import BetaMathLive from './BetaMathLive.vue'
 const input = ref<string>('')
 const defaultInputType = 'LaTeX'
 const inputType = ref(defaultInputType)
-const clickedPythonInput = ref(false)
 const router = useRouter()
 
 function submit () {
-  clickedPythonInput.value = false
   if (input.value) {
     router.push({ name: inputType.value, params: { expr: input.value } })
   }
@@ -70,14 +68,13 @@ function mathliveInputCallback (value: string) {
       <n-radio-group v-model:value="inputType">
         <n-radio-button
           value="Python"
-          @click="clickedPythonInput = true"
         >
-          <n-icon :component="Python" />
-          Python / NL
-        </n-radio-button>
         <n-radio-button value="LaTeX">
           <n-icon :component="Math" />
           LaTeX / Mathlive
+        </n-radio-button>
+          <n-icon :component="Python" />
+          Python
         </n-radio-button>
       </n-radio-group>
       <beta-math-live
