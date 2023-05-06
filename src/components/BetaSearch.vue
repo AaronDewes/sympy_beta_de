@@ -37,7 +37,7 @@ function mathliveInputCallback (value: string) {
         <img
           src="/favicon.svg"
           alt=""
-
+          style="margin-top: 2rem;"
         >
         <n-badge value="Beta" type="info" :offset="[0, 6]">
           <n-a style="font-family: 'EB Garamond', serif">waldrechnr.</n-a>
