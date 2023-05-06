@@ -67,13 +67,13 @@ function mathliveInputCallback (value: string) {
         </n-popover>
       </n-input-group>
       <n-radio-group v-model:value="inputType">
-        <n-radio-button
-          value="Python"
-        >
         <n-radio-button value="LaTeX">
           <n-icon :component="Math" />
           LaTeX / Mathlive
         </n-radio-button>
+        <n-radio-button
+          value="Python"
+        >
           <n-icon :component="Python" />
           Python
         </n-radio-button>
