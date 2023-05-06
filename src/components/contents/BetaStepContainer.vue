@@ -10,7 +10,7 @@ defineProps<{
   <div class="steps">
     <beta-step :content="content.content" />
     <hr>
-    <p>The answer is:</p>
+    <p>Die Lösung ist:</p>
     <beta-step :content="content.answer" />
   </div>
 </template>

@@ -17,7 +17,7 @@ const menuOptions = [
       to: {
         name: 'Main'
       }
-    }, () => 'Main'),
+    }, () => 'Startseite'),
     key: 'Main'
   },
   /*{

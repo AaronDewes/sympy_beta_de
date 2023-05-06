@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { NInputGroup, NInput, NButton, NH1, NA, NPopover, NRadioGroup, NRadioButton, NIcon, NSpace } from 'naive-ui'
+import { NInputGroup, NInput, NButton, NBadge, NH1, NA, NPopover, NRadioGroup, NRadioButton, NIcon, NSpace } from 'naive-ui'
 import { Python } from '@vicons/fa'
 import { Math } from '@vicons/tabler'
 import BetaMathLive from './BetaMathLive.vue'
 
 const input = ref<string>('')
-const defaultInputType = 'Python'
+const defaultInputType = 'LaTeX'
 const inputType = ref(defaultInputType)
 const clickedPythonInput = ref(false)
 const router = useRouter()
@@ -19,21 +19,10 @@ function submit () {
   }
 }
 
-/**
- * \, _{ and ^{ are LaTeX patterns that are meaningless as Python input,
- * so automatically switch to LaTeX input.
- * But if a user explicitly chooses Python input, don't switch.
-*/
-function checkSwitchToLaTeX () {
-  if (inputType.value === 'Python' && !clickedPythonInput.value && /\\|_\{|^\{/.test(input.value)) {
-    inputType.value = 'LaTeX'
-  }
-}
-
 const route = useRoute()
 watchEffect(() => {
   input.value = route.params.expr as string || ''
-  inputType.value = route.name === 'LaTeX' ? 'LaTeX' : defaultInputType
+  inputType.value = route.name === 'Python' ? 'Python' : defaultInputType
 })
 
 function mathliveInputCallback (value: string) {
@@ -51,7 +40,9 @@ function mathliveInputCallback (value: string) {
           src="/favicon.svg"
           alt=""
         >
-        <n-a style="font-family: 'EB Garamond', serif">waldrechnr.</n-a>
+        <n-badge value="Beta">
+          <n-a style="font-family: 'EB Garamond', serif">waldrechnr.</n-a>
+        </n-badge>
       </router-link>
     </n-h1>
     <n-space vertical>
@@ -59,11 +50,10 @@ function mathliveInputCallback (value: string) {
         <n-input
           v-model:value="input"
           type="text"
-          placeholder="Input expression or question"
+          placeholder="Gib einen Ausdruck ein"
           clearable
           style="font-family: 'Droid Sans Mono', monospace"
           @keyup.enter="submit"
-          @input="checkSwitchToLaTeX"
         />
         <n-popover>
           <template #trigger>

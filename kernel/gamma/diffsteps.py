@@ -335,35 +335,35 @@ class DiffPrinter(JSONPrinter):
 
     def print_Power(self, rule):
         with self.new_step():
-            self.append(self.format_text("Apply the power rule: "),
+            self.append(self.format_text("Wende die Potenzregel an: "),
                         self.format_math(rule.context),
-                        self.format_text(" goes to "),
+                        self.format_text(" wird zu "),
                         self.format_math(diff(rule)))
 
     def print_Number(self, rule):
         with self.new_step():
-            self.append(self.format_text("The derivative of the constant "),
+            self.append(self.format_text("Die Ableitung der Konstante "),
                         self.format_math(rule.number),
-                        self.format_text(" is zero."))
+                        self.format_text(" ist null."))
 
     def print_ConstantTimes(self, rule):
         with self.new_step():
-            self.append(self.format_text("The derivative of a constant times a function "
-                                         "is the constant times the derivative of the function."))
+            self.append(self.format_text("Die Ableitung einer Konstante mal einer Funktion "
+                                         "ist die Konstante mal die Ableitung der Funktion."))
             with self.new_level():
                 self.print_rule(rule.substep)
-            self.append(self.format_text("So, the result is: "),
+            self.append(self.format_text("Also ist das Ergebnis: "),
                         self.format_math(diff(rule)))
 
     def print_Add(self, rule):
         with self.new_step():
-            self.append(self.format_text("Differentiate "),
+            self.append(self.format_text("Leite "),
                         self.format_math(rule.context),
-                        self.format_text(" term by term:"))
+                        self.format_text(" schrittweise ab:"))
             with self.new_level():
                 for substep in rule.substeps:
                     self.print_rule(substep)
-            self.append(self.format_text("The result is: "),
+            self.append(self.format_text("Das Ergebnis ist: "),
                         self.format_math(diff(rule)))
 
     def print_Mul(self, rule):
@@ -388,12 +388,12 @@ class DiffPrinter(JSONPrinter):
 
             for fname, deriv, term, substep in zip(fnames, derivatives, rule.terms, rule.substeps):
                 self.append(self.format_math(sympy.Eq(fname, term, evaluate=False)),
-                            self.format_text("; to find "),
+                            self.format_text("; um "),
                             self.format_math(deriv),
-                            self.format_text(":"))
+                            self.format_text(" zu finden:"))
                 with self.new_level():
                     self.print_rule(substep)
-            self.append(self.format_text("The result is: "),
+            self.append(self.format_text("Das Ergebnis ist: "),
                         self.format_math(diff(rule)))
 
     def print_Div(self, rule):
@@ -405,31 +405,31 @@ class DiffPrinter(JSONPrinter):
             qrule_left = sympy.Derivative(ff / gg, rule.symbol)
             qrule_right = sympy.ratsimp(sympy.diff(sympy.Function("f")(x) / sympy.Function("g")(x)))
             qrule = sympy.Eq(qrule_left, qrule_right, evaluate=False)
-            self.append(self.format_text("Apply the quotient rule, which is:"))
+            self.append(self.format_text("Benutze die Quotientenregel:"))
             self.append(self.format_math_display(qrule))
             self.append(self.format_math(sympy.Eq(ff, f, evaluate=False)),
-                        self.format_text(" and "),
+                        self.format_text(" und "),
                         self.format_math(sympy.Eq(gg, g, evaluate=False)))
-            self.append(self.format_text("To find "),
+            self.append(self.format_text("Um "),
                         self.format_math(ff.diff(rule.symbol)),
-                        self.format_text(":"))
+                        self.format_text(" zu finden :"))
             with self.new_level():
                 self.print_rule(rule.numerstep)
-            self.append(self.format_text("To find "),
+            self.append(self.format_text("Um "),
                         self.format_math(gg.diff(rule.symbol)),
-                        self.format_text(":"))
+                        self.format_text(" zu finden:"))
             with self.new_level():
                 self.print_rule(rule.denomstep)
-            self.append(self.format_text("Now plug in to the quotient rule:"))
+            self.append(self.format_text("Nun setze es in die Quotientenregel ein:"))
             self.append(self.format_math(diff(rule)))
 
     def print_Chain(self, rule):
         with self.new_step(), self.new_u_vars() as (u, du):
-            self.append(self.format_text("Let "),
+            self.append(self.format_text("Es sei "),
                         self.format_math(sympy.Eq(u, rule.inner, evaluate=False)))
             self.print_rule(replace_u_var(rule.substep, rule.u_var, u))
         with self.new_step():
-            self.append(self.format_text("Then, apply the chain rule. Multiply by "),
+            self.append(self.format_text("Nutze dann die Kettenregel. Multipliziere mit "),
                         self.format_math(sympy.Derivative(rule.inner, rule.symbol)),
                         self.format_text(":"))
             if isinstance(rule.innerstep, FunctionRule):
@@ -437,15 +437,15 @@ class DiffPrinter(JSONPrinter):
             else:
                 with self.new_level():
                     self.print_rule(rule.innerstep)
-                self.append(self.format_text("The result of the chain rule is:"))
+                self.append(self.format_text("Das Ergebnis der Kettenregel ist:"))
                 self.append(self.format_math_display(diff(rule)))
 
     def print_Trig(self, rule):
         with self.new_step():
             if isinstance(rule.f, sympy.sin):
-                self.append(self.format_text("The derivative of sine is cosine:"))
+                self.append(self.format_text("Die Ableitung vom Sinus ist Kosinus:"))
             elif isinstance(rule.f, sympy.cos):
-                self.append(self.format_text("The derivative of cosine is negative sine:"))
+                self.append(self.format_text("Die Ableitung vom Kosinus ist der negative Sinus:"))
             elif isinstance(rule.f, sympy.sec):
                 self.append(self.format_text("The derivative of secant is secant times tangent:"))
             elif isinstance(rule.f, sympy.csc):
@@ -456,9 +456,9 @@ class DiffPrinter(JSONPrinter):
     def print_Exp(self, rule):
         with self.new_step():
             if rule.base == sympy.E:
-                self.append(self.format_text("The derivative of "),
+                self.append(self.format_text("Die Ableitung von "),
                             self.format_math(sympy.exp(rule.symbol)),
-                            self.format_text(" is itself."))
+                            self.format_text(" ist es selbst."))
             else:
                 self.append(self.format_math(sympy.Eq(sympy.Derivative(rule.f, rule.symbol), diff(rule),
                                                       evaluate=False)))
@@ -466,14 +466,14 @@ class DiffPrinter(JSONPrinter):
     def print_Log(self, rule):
         with self.new_step():
             assert rule.base == sympy.E
-            self.append(self.format_text("The derivative of "),
+            self.append(self.format_text("Die Ableitung von "),
                         self.format_math(rule.context),
-                        self.format_text(" is "),
+                        self.format_text(" ist "),
                         self.format_math(diff(rule)))
 
     def print_Rewrite(self, rule):
         with self.new_step():
-            self.append(self.format_text("Rewrite the function to be differentiated:"))
+            self.append(self.format_text("Schreibe die Funktion um, damit sie abgeleitet werden kann:"))
             self.append(self.format_math_display(sympy.Eq(rule.context, rule.rewritten, evaluate=False)))
             self.print_rule(rule.substep)
 
@@ -485,8 +485,8 @@ class DiffPrinter(JSONPrinter):
 
     def print_DontKnow(self, rule):
         with self.new_step():
-            self.append(self.format_text("Don't know the steps in finding this derivative."))
-            self.append(self.format_text("But the derivative is"))
+            self.append(self.format_text("Die Schritte konnten nicht bestimmt werden."))
+            self.append(self.format_text("Aber die Ableitung ist"))
             self.append(self.format_math_display(diff(rule)))
 
     def print_Alternative(self, rule):
@@ -498,10 +498,10 @@ class DiffPrinter(JSONPrinter):
         else:
             self.alternative_functions_printed.add(rule.context.func)
             with self.new_step():
-                self.append(self.format_text("There are multiple ways to do this derivative."))
+                self.append(self.format_text("Es gibt mehrere Möglichkeiten, die Ableitung zu berechnen."))
                 for index, r in enumerate(rule.alternatives[1:]):
                     with self.new_collapsible():
-                        self.append_header("Method #{}".format(index + 1))
+                        self.append_header("Möglichkeit {}".format(index + 1))
                         with self.new_level():
                             self.print_rule(r)
 
@@ -512,7 +512,7 @@ class DiffPrinter(JSONPrinter):
             if simp != answer:
                 answer = simp
                 with self.new_step():
-                    self.append(self.format_text("Now simplify:"))
+                    self.append(self.format_text("Nun vereinfache:"))
                     self.append(self.format_math_display(simp))
         return {
             'content': {'level': self.stack},

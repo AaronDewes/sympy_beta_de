@@ -74,20 +74,20 @@ function chooseVariable (variable: string) {
       :choose-variable="chooseVariable"
     />
     <div class="foot">
-      See what
+      <!--See what
       <n-a
         class="wolfram"
         :href="`https://www.wolframalpha.com/input/?i=${encodeURIComponent(expr)}`"
         target="_blank"
       >
         Wolfram|Alpha
-      </n-a> says.
+      </n-a> says.-->
       <p>
-        This page needs improvement? <n-a
-          :href="`${homepage}/issues/new?title=Improvement suggestion&body=%23%23 Input%0A\`${encodeURIComponent(expr)}\`%0A%23%23 How can it be better?%0A`"
+        Diese Seite hat einen Fehler? <n-a
+          :href="`${homepage}/issues/new?title=Verbesserungsvorschlag&body=%23%23 Eingabe%0A\`${encodeURIComponent(expr)}\`%0A%23%23 Wie könnte es besser sein?%0A`"
           target="_blank"
         >
-          Submit an issue
+          Sende einen Report
         </n-a>!
       </p>
     </div>
