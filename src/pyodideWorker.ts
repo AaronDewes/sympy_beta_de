@@ -37,7 +37,7 @@ async function loadPyodideAndPackages () {
         f.write(await words_res.bytes())
     await micropip.install([f'/{kernelName}-{kernelVersion}-py3-none-any.whl',
         'cplot',
-        '/antlr4_python3_runtime-4.10-py3-none-any.whl'])
+        '/antlr4_python3_runtime-4.12-py3-none-any.whl'])
     from api import eval_input, eval_latex_input, eval_card as eval_card_inner, get_sympy_version
     def eval_card(card_name, expression, variable, parameters):
         return eval_card_inner(card_name, expression, variable, parameters.to_py())
