@@ -10,7 +10,7 @@ function notifyLoading () {
   let count = 1
   const reactive = notification.create({
     type: 'info',
-    title: 'Setting up runtime',
+    title: 'Einrichtung läuft',
     content: baseContent + ' ' + '.'.repeat(count),
     onAfterEnter: () => {
       const plusCount = () => {
