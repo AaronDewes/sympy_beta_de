@@ -140,7 +140,7 @@ class IntegralPrinter(JSONPrinter):
 
     def print_Parts(self, rule):
         with self.new_step():
-            self.append(self.format_text("Use integration by parts:"))
+            self.append(self.format_text("Nutze partielle Integration:"))
             u, v = sympy.Function('u')(rule.symbol), sympy.Function('v')(rule.symbol)
             du, dv, dx = DerivExpr('u'), DerivExpr('v'), DerivExpr('x')
             self.append(self.format_math_display(R"\int u \mathrm{d}v = uv - \int v \mathrm{d}u"))
