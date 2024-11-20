@@ -368,7 +368,7 @@ class DiffPrinter(JSONPrinter):
 
     def print_Mul(self, rule):
         with self.new_step():
-            self.append(self.format_text("Apply the product rule: "),
+            self.append(self.format_text("Wende die Produktregel an: "),
                         self.format_math(rule.context))
 
             fnames = [sympy.Function(n)(rule.symbol) for n in functionnames(len(rule.terms))]
